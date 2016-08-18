@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽液量和金属浓度</title>
+    <link rel="stylesheet" href="Styles/default.css" id="theme_base">
+    <link rel="stylesheet" href="Styles/default.date.css" id="theme_date">
+    <link rel="stylesheet" href="Styles/default.time.css" id="theme_time">
+    <script src="Scripts/jquery.2.0.0.js"></script>
+    <script src="Scripts/pickadate.js-3.5.6/picker.js"></script>
+    <script src="Scripts/pickadate.js-3.5.6/picker.date.js"></script>
+    <script src="Scripts/pickadate.js-3.5.6/picker.time.js"></script>
+</head>
+<body>
+<div>
+    <span class="text-primary">起始时间：</span>
+<input type="text" id="dateStart" />
+    <span class="text-primary">结束时间：</span>
+<input type="text" id="dateEnd" />
+    <span class="text-primary">切换主题:</span>
+    <select id="theme-select">
+        <option selected="true" name="macarons">macarons</option>
+        <option  name="infographic">infographic</option>
+        <option name="shine">shine</option>
+        <option  name="dark">dark</option>
+        <option  name="green">green</option>
+        <option  name="red">red</option>
+        <option  name="gray">gray</option>
+        <option  name="helianthus">helianthus</option>
+        <option  name="roma">roma</option>
+        <option  name="mint">mint</option>
+        <option  name="macarons2">macarons2</option>
+        <option  name="sakura">sakura</option>
+        <option  name="default">default</option>
+    </select>
+    <span id="wrong-message" style="color:red"></span>
+    <button type="button" class="btn btn-sm btn-success" onclick="reFresh()" style="width:80px;height:20px;">刷新</button>
+</div>
+<div id="main" style="height:400px;"></div>
+<script src="Scripts/echarts-2.2.5/echarts-2.2.5/build/dist/echarts-all.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    var startTime = $('#dateStart').pickadate();
+    var endTime = $('#dateEnd').pickadate();
+
+    console.log($('#dateStart').get());
+    var option = {
+        title : {
+            text: '抽液量和金属浓度'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['抽液量','金属浓度']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: false},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                axisLabel : {
+                    formatter: '{value}ml'
+                }
+            },
+            {
+                type : 'value',
+                axisLabel : {
+                    formatter: '{value}mg/ml'
+                }
+            }
+        ],
+        series : [
+            {
+                name: '抽液量',
+                type: 'line',
+                data:[11,0, 200, 200, 0, 10, 10],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name:'金属浓度',
+                type:'line',
+                data:[1, 20, 20, 5, 30, 30, 0],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                yAxisIndex: 1,
+                markLine : {
+                    data : [
+                        {type : 'average', name : '平均值'}
+                    ]
+                }
+            }
+        ]
+    };
+    myChart.setOption(option);
+
+    function reFresh(){
+
+    }
+</script>
+</body>
+</html>

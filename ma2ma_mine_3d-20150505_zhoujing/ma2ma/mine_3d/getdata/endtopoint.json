@@ -1,0 +1,16 @@
+{
+    "result": true,
+    "message": "建立实体错误",
+    "metadata" : {
+        "version": 4,
+        "type": "geometry",
+        "object_name": "k(l1-p)",
+        "object_id": "34324sdfsadf42342"
+    },
+
+    "vertices":[11,-10,-11,21,-10,-11,12,-25,-11,15,-15,-20],
+    "faces": [0,0,1,3,
+              0,0,2,3,
+              0,1,2,3
+    ]
+}

@@ -1,0 +1,14 @@
+{"type":"line",
+    "line":
+        [
+            {"x":11,"y":-10,"z":-11},
+            {"x":21,"y":-10,"z":-11},
+            {"x":12,"y":-25,"z":-11},
+            {"x":11,"y":-10,"z":-11}
+        ],
+    "distance":10,
+    "create_pl":true,
+    "line_short":true,
+    "line_scale_v":1,
+    "line_point_num":12
+}
